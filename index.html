@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>404 Eye - Shoper Dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 0; background: #000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; overflow: hidden; font-family: 'Montserrat', sans-serif;
+            cursor: crosshair;
+        }
+        .eyes-row { display: flex; gap: 30px; justify-content: center; }
+        .eye {
+            width: 100px; height: 100px; background: #fff;
+            border-radius: 50%; position: relative; overflow: hidden;
+        }
+        .pupil {
+            width: 35px; height: 35px; background: #000;
+            border-radius: 50%; position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            transition: 0.1s ease-out;
+        }
+        h1 { font-size: 120px; color: #fff; margin: 20px 0 0; line-height: 1; letter-spacing: -5px; }
+        p { color: #ffdb00; font-size: 20px; text-transform: uppercase; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="eyes-row">
+        <div class="eye"><div class="pupil"></div></div>
+        <div class="eye"><div class="pupil"></div></div>
+    </div>
+    <h1>404</h1>
+    <p>WE ARE WATCHING YOU</p>
+
+    <script>
+        const pupils = document.querySelectorAll('.pupil');
+        document.addEventListener('mousemove', (e) => {
+            pupils.forEach(pupil => {
+                const rect = pupil.parentElement.getBoundingClientRect();
+                const eyeX = rect.left + rect.width / 2;
+                const eyeY = rect.top + rect.height / 2;
+                const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
+                const distance = 25; 
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+                pupil.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+            });
+        });
+    </script>
+</body>
+</html>
