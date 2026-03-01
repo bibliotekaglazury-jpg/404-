@@ -9,15 +9,22 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            background-color: #416475;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      body {
+    background-color: #416475;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    
+    /* 1. МЕНЯЕМ ЭТУ СТРОКУ: */
+    justify-content: flex-start; /* Было center, теперь прижимаем к верху */
+    
+    /* 2. ДОБАВЛЯЕМ ЭТУ СТРОКУ (ТВОЙ РЫЧАГ ВЫСОТЫ): */
+    padding-top: 50px; /* Чем больше число, тем НИЖЕ упадет 404 */
+    
+    flex-direction: column; /* Чтобы всё шло сверху вниз */
+}
 
         .error-container {
             text-align: center;
