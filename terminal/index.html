@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Inconsolata');
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; 
+            background-color: #000;
+            background-image: radial-gradient(#11581E, #041607);
+            font-family: 'Inconsolata', monospace;
+        }
+        .noise {
+            pointer-events: none; position: absolute; width: 100%; height: 100%;
+            background-image: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+            background-repeat: no-repeat; background-size: cover; z-index: -1; opacity: .05;
+        }
+        .overlay {
+            pointer-events: none; position: absolute; width: 100%; height: 100%;
+            background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+            background-size: auto 4px; z-index: 1;
+        }
+        .overlay::before {
+            content: ""; pointer-events: none; position: absolute; display: block;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(0deg, transparent 0%, rgba(32, 128, 32, 0.2) 2%, rgba(32, 128, 32, 0.8) 3%, rgba(32, 128, 32, 0.2) 3%, transparent 100%);
+            background-repeat: no-repeat; animation: scan 7.5s linear infinite;
+        }
+        @keyframes scan {
+            0% { background-position: 0 -100vh; }
+            35%, 100% { background-position: 0 100vh; }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="overlay"></div>
+</body>
+</html>
