@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #D4D9ED; /* Светло-фиолетовый фон */
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .cont_principal {
+            position: absolute; width: 100%; height: 100%;
+            overflow: hidden;
+        }
+
+        /* АНИМИРОВАННЫЕ АУРЫ */
+        .cont_aura_1 {
+            position: absolute; width: 300px; height: 120%;
+            top: 25px; right: -340px;
+            background-color: #8A65DF;
+            box-shadow: 0px 0px 60px 20px rgba(137,100,222,0.5);
+            transition: all 1.5s;
+        }
+
+        .cont_aura_2 {
+            position: absolute; width: 100%; height: 300px;
+            right: -10%; bottom: -301px;
+            background-color: #8B65E4;
+            box-shadow: 0px 0px 60px 10px rgba(131, 95, 214, 0.5), 0px 0px 20px 0px rgba(0,0,0,0.1);
+            transition: all 1.5s;
+        }
+
+        /* ТРИГГЕР АНИМАЦИИ */
+        .active .cont_aura_2 {
+            animation: animation_error_2 4s linear infinite alternate;
+            transform: rotate(-20deg);
+            bottom: -100px;
+        }
+        .active .cont_aura_1 {
+            transform: rotate(20deg);
+            right: -170px;
+            animation: animation_error_1 4s linear infinite alternate;
+        }
+
+        @keyframes animation_error_1 {
+            from { transform: rotate(20deg); }
+            to { transform: rotate(25deg); }
+        }
+        @keyframes animation_error_2 {
+            from { transform: rotate(-15deg); }
+            to { transform: rotate(-20deg); }
+        }
+    </style>
+</head>
+<body id="main-body">
+    <div class="cont_principal">
+        <div class="cont_aura_1"></div>
+        <div class="cont_aura_2"></div>
+    </div>
+    <script>
+        window.onload = function(){
+            document.getElementById('main-body').className = "active";  
+        }
+    </script>
+</body>
+</html>
