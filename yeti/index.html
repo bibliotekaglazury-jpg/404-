@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #09334f; overflow: hidden; }
+        #yetiSVG, #lightSVG {
+            width: 600px; height: 470px;
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); /* Центрируем анимацию */
+        }
+        #lightSVG { overflow: visible; }
+    </style>
+</head>
+<body>
+    <!-- Твой SVG код -->
+    <svg id="yetiSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 470">
+        <!-- ... (весь код SVG из твоего Paste) ... -->
+        <path fill="#24658F" d="M0 0h600v470H0z"/>
+        <!-- Сюда вставь все внутренности yetiSVG -->
+        <g id="pillow">...</g> <g id="yeti">...</g> <!-- и так далее -->
+    </svg>
+
+    <svg id="lightSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 470">
+        <!-- Сюда вставь все внутренности lightSVG -->
+        <g id="light">...</g> <g id="four04">...</g>
+    </svg>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script>
+        // Твой JS код анимации (TimelineMax и функции goLight/goDark)
+        // ВАЖНО: Весь JS из твоего сообщения копируешь сюда
+        var yetiTL, chatterTL, ... // и т.д.
+        // ... (весь JS из твоего Paste) ...
+    </script>
+</body>
+</html>
