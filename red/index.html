@@ -6,7 +6,6 @@
     <title>Red Tier 1 Engine - SHOPER_DEV</title>
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- MASTER CSS (FLATTENED) --- */
         :root {
             --white: #FFFFFF;
             --red: #FF3F3F;
@@ -19,117 +18,124 @@
         body {
             background: var(--red);
             font-family: var(--font);
-            height: 100vh;
-            width: 100vw;
+            height: 100vh; width: 100vw;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .page-wrapper {
             position: relative;
-            height: 100vh;
-            width: 100vw;
+            height: 100vh; width: 100vw;
             overflow: hidden;
             background: var(--red);
         }
 
-        /* КРУГИ */
+        /* --- КРУГИ (ФОН) --- */
         .circles-layer .circle {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            height: 300vw;
-            width: 300vw;
+            top: 50%; left: 50%;
+            height: 300vw; width: 300vw;
             transform: translateX(-50%) translateY(-50%) scale(0);
             border-radius: 50%;
-            animation: circle-animation 10s linear infinite;
+            animation: circle-animation 8s linear infinite;
             will-change: transform;
         }
-        .circle.-white { border: 30vw solid var(--white); }
-        .circle.-red { border: 25vw solid var(--dark-red); }
-        .circle:nth-of-type(2) { animation-delay: 100ms; }
-        .circle:nth-of-type(3) { animation-delay: 150ms; }
-        .circle:nth-of-type(4) { animation-delay: 200ms; }
+        .circle.-white { border: 35vw solid var(--white); }
+        .circle.-red { border: 30vw solid var(--dark-red); }
+        
+        .circle:nth-child(2) { animation-delay: 0.1s; }
+        .circle:nth-child(3) { animation-delay: 0.2s; }
+        .circle:nth-child(4) { animation-delay: 0.3s; }
 
         @keyframes circle-animation {
             0%   { transform: translateX(-50%) translateY(-50%) scale(0); }
-            10%  { transform: translateX(-50%) translateY(-50%) scale(1); }
+            15%  { transform: translateX(-50%) translateY(-50%) scale(1); }
             100% { transform: translateX(-50%) translateY(-50%) scale(1); }
         }
 
-        /* ЦИФРЫ */
+        /* --- ЦИФРЫ (ГИГАНТСКИЕ) --- */
         .number {
             position: absolute;
-            font-size: 10rem;
+            font-size: 35vh; /* Огромный размер от высоты */
             color: var(--white);
             transform: scale(0);
             opacity: 0;
             font-weight: 200;
-            animation: number-animation 10s linear infinite;
+            line-height: 0.8;
+            animation: number-animation 8s linear infinite;
+            will-change: transform, opacity;
+            z-index: 5;
         }
-        .number.-with-shadow { text-shadow: 1rem 1rem var(--dark-red); }
+        .number.-with-shadow { text-shadow: 2vh 2vh var(--dark-red); }
 
         @keyframes number-animation {
-            0%, 30%, 40%, 50%, 60%, 70%, 80%, 100% { transform: scale(0); opacity: 0; }
-            32%, 37% { transform: scale(1); opacity: 1; }
-            52%, 57% { transform: scale(0.5); opacity: 1; }
-            72%, 77% { transform: scale(0.8); opacity: 1; }
+            0%   { transform: scale(0); opacity: 0; }
+            5%   { transform: scale(0); opacity: 0; }
+            8%   { transform: scale(1.1); opacity: 1; }
+            12%  { transform: scale(1); opacity: 1; }
+            25%  { transform: scale(1); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
         }
 
-        /* РАССТАНОВКА ЦИФР */
-        .number:nth-of-type(1)  { top: 5%;  left: 5%;  animation-delay: 0s; }
-        .number:nth-of-type(2)  { top: 15%; left: 55%; animation-delay: 40ms; font-size: 15rem; }
-        .number:nth-of-type(3)  { top: 25%; left: 15%; animation-delay: 80ms; }
-        .number:nth-of-type(4)  { top: 75%; left: 20%; animation-delay: 120ms; }
-        .number:nth-of-type(5)  { top: 25%; left: 75%; animation-delay: 160ms; font-size: 6rem; }
-        .number:nth-of-type(6)  { top: 65%; left: 45%; animation-delay: 200ms; } 
-        .number:nth-of-type(9)  { top: 40%; left: 35%; animation-delay: 320ms; font-size: 15rem; }
-        .number:nth-of-type(10) { top: 70%; left: 65%; animation-delay: 360ms; }
+        /* ХАОТИЧНАЯ РАССТАНОВКА И ЗАДЕРЖКИ (Как просил Шеф) */
+        .number:nth-child(1)  { top: 5%;  left: 5%;  animation-delay: 0.5s; }
+        .number:nth-child(2)  { top: 10%; left: 65%; animation-delay: 1.2s; font-size: 50vh; }
+        .number:nth-child(3)  { top: 40%; left: 10%; animation-delay: 2.5s; font-size: 40vh; }
+        .number:nth-child(4)  { top: 65%; left: 25%; animation-delay: 0.2s; }
+        .number:nth-child(5)  { top: 20%; left: 80%; animation-delay: 3.8s; font-size: 25vh; }
+        .number:nth-child(6)  { top: 70%; left: 55%; animation-delay: 1.8s; }
+        .number:nth-child(7)  { top: 45%; left: 75%; animation-delay: 5.0s; }
+        .number:nth-child(8)  { top: 5%;  left: 40%; animation-delay: 3.2s; }
+        
+        /* НУЛИ С ТЕНЬЮ */
+        .number:nth-child(9)  { top: 35%; left: 30%; animation-delay: 0.8s; font-size: 55vh; }
+        .number:nth-child(10) { top: 60%; left: 70%; animation-delay: 2.2s; font-size: 45vh; }
 
-        /* --- UI HUB (SHOPER ENGINE) --- */
+        /* --- UI ИНТЕРФЕЙС --- */
         .ui-hub {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 100%;
-            max-width: 500px;
+            width: 90%; max-width: 550px;
             z-index: 1000;
             text-align: center;
             color: #fff;
         }
 
-        .oops-msg { font-size: 32px; font-weight: 700; margin-bottom: 30px; text-transform: uppercase; }
+        .oops-msg { font-size: 2.5rem; font-weight: 700; margin-bottom: 30px; text-transform: uppercase; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
         .search-box {
-            display: flex; background: #fff; border-radius: 50px; padding: 5px; margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex; background: #fff; border-radius: 50px; padding: 4px; margin-bottom: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
         .search-box input {
-            flex-grow: 1; border: none; padding: 12px 25px; border-radius: 50px; 
-            outline: none; font-size: 18px; font-family: var(--font);
+            flex-grow: 1; border: none; padding: 15px 25px; border-radius: 50px; 
+            outline: none; font-size: 18px; font-family: var(--font); color: #333;
         }
         .search-box button {
             background: var(--dark-red); color: #fff; border: none; 
-            padding: 10px 30px; border-radius: 40px; font-weight: 700; cursor: pointer;
+            padding: 0 35px; border-radius: 40px; font-weight: 700; cursor: pointer; text-transform: uppercase;
         }
 
         .nav-links { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
         .nav-links a {
-            background: rgba(0,0,0,0.3); color: #fff; text-decoration: none;
-            padding: 10px 20px; border-radius: 4px; font-size: 14px; font-weight: 700;
+            background: rgba(0,0,0,0.5); color: #fff; text-decoration: none;
+            padding: 10px 22px; border-radius: 4px; font-size: 14px; font-weight: 700; transition: 0.2s;
         }
+        .nav-links a:hover { background: #fff; color: var(--red); }
 
-        .contacts { font-size: 16px; font-weight: 700; }
-        .contacts a { color: var(--white); text-decoration: underline; }
+        .contacts { font-size: 16px; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .contacts a { color: var(--white); text-decoration: underline; position: static; font-size: 16px; }
+
+        @media (max-height: 500px) {
+            .number { font-size: 25vh; }
+            .oops-msg { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
     <div class="page-wrapper">
-        <!-- АНИМИРОВАННЫЙ ФОН -->
+        <!-- ФОНОВЫЕ КРУГИ -->
         <div class="circles-layer">
             <div class="circle -white"></div>
             <div class="circle -red"></div>
@@ -137,20 +143,23 @@
             <div class="circle -red"></div>
         </div>
 
+        <!-- ЛЕТАЮЩИЕ ЦИФРЫ -->
         <div class="numbers-layer">
             <div class="number">4</div><div class="number">4</div>
             <div class="number">4</div><div class="number">4</div>
             <div class="number">4</div><div class="number">4</div>
-            <div class="number -with-shadow">0</div><div class="number -with-shadow">0</div>
+            <div class="number">4</div><div class="number">4</div>
+            <div class="number -with-shadow">0</div>
+            <div class="number -with-shadow">0</div>
         </div>
 
-        <!-- ЦЕНТРАЛЬНЫЙ ИНТЕРФЕЙС -->
+        <!-- ЦЕНТРАЛЬНЫЙ БЛОК -->
         <div class="ui-hub">
-            <div class="oops-msg">Ups! Wygląda на to, że się zgubiłeś</div>
+            <div class="oops-msg">Ups! Zgubiłeś się?</div>
             
             <form class="search-box" id="search-form" action="" method="get" target="_top">
                 <input type="text" name="search" placeholder="Czego szukasz?">
-                <button type="submit">Szukaj</button>
+                <button type="submit" class="search-btn">Szukaj</button>
             </form>
 
             <div class="nav-links">
