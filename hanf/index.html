@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium 404 Hand - SHOPER_DEV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
+    <style>
+        :root { --accent: #ffdb00; --dark: #333333; --bg: #ececec; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: var(--bg);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* --- АНИМАЦИЯ --- */
+        #error {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* --- ИНТЕРФЕЙС (UI) --- */
+        .ui-container {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            z-index: 100;
+        }
+
+        .search-box {
+            display: flex;
+            background: #fff;
+            border: 2px solid var(--dark);
+            border-radius: 50px;
+            padding: 4px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .search-box input {
+            flex-grow: 1; border: none; padding: 12px 20px; 
+            border-radius: 50px; outline: none; font-size: 16px; font-family: inherit;
+        }
+        .search-btn {
+            background: var(--dark); color: #fff; border: none; 
+            padding: 10px 30px; border-radius: 40px; font-weight: 900; 
+            cursor: pointer; text-transform: uppercase;
+        }
+
+        .nav-links { display: flex; gap: 8px; justify-content: center; }
+        .nav-links a {
+            background: var(--dark); color: #fff; text-decoration: none;
+            padding: 10px 20px; border-radius: 6px;
+            font-size: 11px; font-weight: 900; transition: 0.3s;
+        }
+        .nav-links a:hover { background: var(--accent); color: var(--dark); }
+
+        .contacts { margin-top: 20px; font-size: 13px; color: var(--dark); font-weight: 900; opacity: 0.8; }
+        .contacts a { color: var(--dark); text-decoration: underline; }
+
+        @media (max-width: 480px) {
+            #error { max-width: 300px; }
+            .ui-container { scale: 0.9; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. SVG АНИМАЦИЯ (РУКА) -->
+    <svg id="error" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" enable-background="new 0 0 400 400">
+        <g id="svg-mask">
+            <path fill="#ececec" d="M6.789,4.774v325.322h51.02c15.366,15.557,69.323,27.047,133.529,27.047 c64.207,0,118.164-11.49,133.529-27.047h67.938V4.774H6.789z"/>
+        </g>
+        <g id="svg-hole">
+            <path fill="#C0C0C0" d="M324.867,330.098c2.863-2.897,4.389-5.938,4.389-9.072c0-19.946-61.748-36.116-137.918-36.116 S53.42,301.078,53.42,321.025c0,3.133,1.524,6.174,4.389,9.07c15.366-15.556,69.323-27.046,133.529-27.046 C255.545,303.051,309.502,314.541,324.867,330.098z"/>
+            <path fill="#333333" d="M324.867,330.098c-15.365-15.557-69.322-27.047-133.529-27.047c-64.206,0-118.163,11.49-133.529,27.047 c15.366,15.557,69.323,27.045,133.529,27.045C255.545,357.143,309.502,345.652,324.867,330.098z"/>
+        </g>
+        <g id="svg-hand">
+            <path fill="#F6AF74" d="M224.002,639.541 c-0.989-4.156-2.063-8.734-3.207-13.664c-0.425-1.831-0.858-3.705-1.302-5.631c-0.957,1.461-2.423,3.426-4.395,5.339 c-3.47,3.367-8.512,6.571-15.142,6.571c-0.448,0-0.903-0.014-1.364-0.043c-5.405-0.354-11.179-1.168-17.174-2.422 c-0.208,6.727-0.282,15.629,0.449,21.48c0.872,6.979,3.285,39.989,3.925,48.082c2.282,0.029,4.577,0.046,6.888,0.046 c14.876,0,31.888-0.616,45.312-1.758C235.236,687.629,226.856,651.527,224.002,639.541z"/>
+            <!-- ... остальные части руки ... -->
+            <path fill="#BA5B3C" d="M191.569,372.173c-0.236-5.108-4.036-9.083-8.484-8.875l-5.034,0.233 c-4.448,0.209-7.861,4.519-7.623,9.628l0.486,10.153l21.119-1.482L191.569,372.173z"/>
+            <polygon fill="#FFFFFF" points="292.153,374.793 192.031,381.83 170.911,383.312 69.614,390.432 75.595,500.578 176.198,493.645 197.32,492.189 302.378,484.949 "/>
+        </g>
+    </svg>
+
+    <!-- 2. ИНТЕРФЕЙС SHOPER -->
+    <div class="ui-container">
+        <form class="search-box" id="search-form" action="" method="get" target="_top">
+            <input type="text" name="search" placeholder="Czego szukasz?">
+            <button type="submit" class="search-btn">Szukaj</button>
+        </form>
+
+        <div class="nav-links">
+            <a href="/" id="link-home" target="_top">HOME</a>
+            <a href="/pl/new" id="link-new" target="_top">NOWOŚCI</a>
+            <a href="/kontakt" id="link-contact" target="_top">KONTAKT</a>
+        </div>
+
+        <div class="contacts">
+            Tel: <a href="#" id="shop-phone">...</a> | Email: <a href="#" id="shop-email">...</a>
+        </div>
+    </div>
+
+    <script>
+        // --- ЛОГИКА АНИМАЦИИ SNAP.SVG ---
+        window.onload = function () {
+            var error = Snap.select("#error"),
+                hand = Snap.select("#svg-hand"),
+                mask = Snap.select("#svg-mask");
+
+            function animOn(){
+                hand.animate({ transform: "t10,-300, r0" }, 4500, mina.easeinout, animOut);
+                mask.animate({ transform: "t-10,300, r0" }, 4500, mina.easeinout);
+            }
+
+            function animOut() {
+                hand.animate({ transform: "t-10,-305, r0" }, 4500, mina.easeinout, animOn);
+                mask.animate({ transform: "t10,305, r0" }, 4500, mina.easeinout);
+            }
+
+            function open() {
+                hand.animate({ transform: "t0,-300" }, 800, mina.backout, animOn);
+                mask.animate({ transform: "t0,300" }, 800, mina.backout);
+            }
+            
+            setTimeout(open, 1000);
+            hand.attr({ mask: mask });
+        };
+
+        // --- ЛОГИКА СВЯЗИ С SHOPER ---
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            let base = params.get('url') || window.location.origin;
+            if (base.endsWith('/')) base = base.slice(0, -1);
+
+            const phone = params.get('phone');
+            const email = params.get('email');
+
+            if (phone && !phone.includes('{')) {
+                document.getElementById('shop-phone').innerText = phone;
+                document.getElementById('shop-phone').href = "tel:" + phone.replace(/\s+/g, '');
+            }
+            if (email && !email.includes('{')) {
+                document.getElementById('shop-email').innerText = email;
+                document.getElementById('shop-email').href = "mailto:" + email;
+            }
+
+            document.getElementById('link-home').href = base + "/";
+            document.getElementById('link-new').href = base + "/pl/new";
+            document.getElementById('link-contact').href = base + "/pl/contact";
+            document.getElementById('search-form').action = base + "/pl/search";
+        })();
+    </script>
+</body>
+</html>
