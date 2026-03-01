@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 100vw; height: 100vh; overflow: hidden;
+            background-image: linear-gradient(to bottom right, #6200c4, #ed6f00);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .error-code {
+            font-family: "Fredoka One", cursive;
+            font-size: 25vmin; color: #ffffff;
+            display: flex; gap: 3vmin;
+            text-shadow: 2vmin 2vmin rgba(48, 48, 48, 0.2);
+            user-select: none;
+        }
+        .error-code span {
+            display: block;
+            animation: wave 600ms linear infinite;
+        }
+        .error-code span:nth-child(2) { animation-delay: 100ms; }
+        .error-code span:nth-child(3) { animation-delay: 200ms; }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-3vmin); }
+            75% { transform: translateY(3vmin); }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-code">
+        <span>4</span><span>0</span><span>4</span>
+    </div>
+</body>
+</html>
