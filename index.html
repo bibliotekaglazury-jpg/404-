@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universal Premium 404 Engine</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --accent: #ffdb00; --text: #ffffff; --bg: #000000; }
@@ -15,39 +14,38 @@
             height: 100vh; width: 100vw; overflow: hidden; text-align: center; padding: 20px;
         }
 
-        /* ГЛАЗА */
+        /* АНИМИРОВАННЫЕ ГЛАЗА */
         .eyes-row { display: flex; gap: 25px; margin-bottom: 20px; animation: shvr .2s infinite; }
         .eye { width: 80px; height: 80px; background: #fff; border-radius: 50%; position: relative; overflow: hidden; }
         .pupil { width: 30px; height: 30px; background: #000; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: 0.1s ease-out; }
 
-        h1 { font-size: clamp(40px, 8vw, 100px); font-weight: 900; letter-spacing: -2px; margin-bottom: 10px; }
-        p { font-size: 16px; opacity: 0.8; margin-bottom: 40px; max-width: 600px; line-height: 1.5; }
+        h1 { font-size: clamp(60px, 12vw, 120px); font-weight: 900; letter-spacing: -2px; margin: 0; line-height: 1; }
+        p { font-size: 15px; opacity: 0.8; margin: 20px 0 30px; max-width: 500px; line-height: 1.4; }
 
-        /* ПОИСК */
-        .search-box { width: 100%; max-width: 500px; position: relative; margin-bottom: 40px; }
+        /* УНИВЕРСАЛЬНЫЙ ПОИСК */
+        .search-box { width: 100%; max-width: 450px; position: relative; margin-bottom: 30px; }
         .search-box input {
-            width: 100%; padding: 18px 25px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05); color: #fff; font-size: 16px; font-family: inherit; outline: none;
+            width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05); color: #fff; font-size: 16px; outline: none; font-family: inherit;
         }
-        .search-box input:focus { border-color: var(--accent); }
-        .search-btn { position: absolute; right: 8px; top: 8px; background: var(--accent); border: none; padding: 10px 20px; border-radius: 40px; font-weight: 900; cursor: pointer; }
+        .search-btn { position: absolute; right: 5px; top: 5px; background: var(--accent); border: none; padding: 10px 20px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 11px; }
 
         /* НАВИГАЦИЯ */
-        .nav-links { display: flex; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; justify-content: center; }
+        .nav-links { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
         .nav-links a { 
-            text-decoration: none; color: #fff; font-size: 12px; font-weight: 700; padding: 10px 20px; 
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; transition: 0.3s;
+            text-decoration: none; color: #fff; font-size: 11px; font-weight: 700; padding: 8px 15px; 
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; transition: 0.3s; 
         }
         .nav-links a:hover { background: var(--accent); color: #000; border-color: var(--accent); }
         
-        /* КОНТАКТЫ */
-        .contacts { display: flex; gap: 25px; font-size: 14px; opacity: 0.9; flex-wrap: wrap; justify-content: center; }
+        /* КОНТАКТЫ (ДИНАМИЧЕСКИЕ) */
+        .contacts { display: flex; gap: 20px; font-size: 13px; margin-top: 10px; flex-wrap: wrap; justify-content: center; }
         .contacts a { color: var(--accent); text-decoration: none; font-weight: 700; }
 
         @keyframes shvr {
-            0% { transform: translate(1px, 1px); }
-            50% { transform: translate(-1px, -1px); }
-            100% { transform: translate(1px, -1px); }
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(0.5px, 0.5px); }
+            75% { transform: translate(-0.5px, -0.5px); }
         }
     </style>
 </head>
@@ -59,71 +57,80 @@
     </div>
 
     <h1>UPS!</h1>
-    <p>Nie znaleźliśmy tego, czego szukasz, ale nasze oczy są szeroko otwarte. <br> Skorzystaj z wyszukiwarki:</p>
+    <p>Nie znaleźliśmy tej strony, ale my Cię widzimy. <br> Skorzystaj z wyszukiwarki:</p>
 
-    <!-- ПОИСК (Action будет подставлен через JS) -->
-    <form class="search-box" id="search-form" action="" method="get" target="_top">
-        <input type="text" name="search" placeholder="Wpisz nazwę produktu...">
+    <!-- Форма поиска -->
+    <form class="search-box" id="search-form" action="/pl/search" method="get" target="_top">
+        <input type="text" name="search" placeholder="Szukaj produktu...">
         <button type="submit" class="search-btn">Szukaj</button>
     </form>
 
-    <!-- НАВИГАЦИЯ (Hrefs будут подставлены через JS) -->
+    <!-- Универсальные ссылки -->
     <div class="nav-links">
-        <a href="#" id="link-home" target="_top">STRONA GŁÓWNA</a>
-        <a href="#" id="link-new" target="_top">NOWOŚCI</a>
-        <a href="#" id="link-promo" target="_top">PROMOCJE</a>
-        <a href="#" id="link-contact" target="_top">KONTAKT</a>
+        <a href="/" id="link-home" target="_top">STRONA GŁÓWNA</a>
+        <a href="/pl/new" id="link-new" target="_top">NOWOŚCI</a>
+        <a href="/pl/promotions" id="link-promo" target="_top">PROMOCJE</a>
+        <a href="/pl/contact" id="link-contact" target="_top">KONTAKT</a>
     </div>
 
+    <!-- Контакты, которые подтянутся из URL -->
     <div class="contacts">
-        <div>Zadzwoń: <a href="#" id="shop-phone">...</a></div>
-        <div>Napisz: <a href="#" id="shop-email">...</a></div>
+        <div id="phone-box">Zadzwoń: <a href="#" id="shop-phone">...</a></div>
+        <div id="email-box">Napisz: <a href="#" id="shop-email">...</a></div>
     </div>
 
     <script>
-        // 1. ГЛАЗА (Follow Mouse)
+        // 1. ЛОГИКА ГЛАЗ (Слежение за мышью)
         const pupils = document.querySelectorAll('.pupil');
         document.addEventListener('mousemove', (e) => {
             pupils.forEach(pupil => {
                 const rect = pupil.parentElement.getBoundingClientRect();
-                const eyeX = rect.left + rect.width / 2;
-                const eyeY = rect.top + rect.height / 2;
-                const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
-                const distance = 20; 
-                const x = Math.cos(angle) * distance;
-                const y = Math.sin(angle) * distance;
-                pupil.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+                const x = (e.clientX - rect.left) / rect.width * 100;
+                const y = (e.clientY - rect.top) / rect.height * 100;
+                pupil.style.left = Math.max(25, Math.min(75, x)) + '%';
+                pupil.style.top = Math.max(25, Math.min(75, y)) + '%';
             });
         });
 
-        // 2. УНИВЕРСАЛЬНЫЙ РОУТЕР ДЛЯ SHOPER
+        // 2. ЛОГИКА ПРИЕМНИКА ДАННЫХ (Парсинг URL)
         const params = new URLSearchParams(window.location.search);
-        // Получаем базу (например https://www.iglazura24.pl)
-        let baseUrl = params.get('url') || window.location.origin;
-        if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
+        let base = params.get('url') || window.location.origin;
+        if (base.endsWith('/')) base = base.slice(0, -1);
 
-        // Привязываем контакты
         const phone = params.get('phone');
         const email = params.get('email');
-        
-        if (phone) {
+
+        // Вставляем телефон, если он передан и это не пустой тег
+        if (phone && !phone.includes('{')) {
             document.getElementById('shop-phone').innerText = phone;
             document.getElementById('shop-phone').href = "tel:" + phone.replace(/\s+/g, '');
+        } else {
+            document.getElementById('phone-box').style.display = 'none';
         }
-        if (email) {
+
+        // Вставляем почту
+        if (email && !email.includes('{')) {
             document.getElementById('shop-email').innerText = email;
             document.getElementById('shop-email').href = "mailto:" + email;
+        } else {
+            document.getElementById('email-box').style.display = 'none';
         }
 
-        // Привязываем УНИВЕРСАЛЬНЫЕ ССЫЛКИ
-        document.getElementById('link-home').href = baseUrl + "/";
-        document.getElementById('link-new').href = baseUrl + "/pl/new";
-        document.getElementById('link-promo').href = baseUrl + "/pl/promotions";
-        document.getElementById('link-contact').href = baseUrl + "/pl/contact";
-        
-        // Привязываем ПОИСК
-        document.getElementById('search-form').action = baseUrl + "/pl/search";
+        // ПРИВЯЗКА УНИВЕРСАЛЬНЫХ ССЫЛОК К ДОМЕНУ МАГАЗИНА
+        const navLinks = {
+            'link-home': '/',
+            'link-new': '/pl/new',
+            'link-promo': '/pl/promotions',
+            'link-contact': '/pl/contact'
+        };
 
+        for (let id in navLinks) {
+            const el = document.getElementById(id);
+            if (el) el.href = base + navLinks[id];
+        }
+
+        // Привязка поиска к домену магазина
+        document.getElementById('search-form').action = base + "/pl/search";
     </script>
 </body>
 </html>
