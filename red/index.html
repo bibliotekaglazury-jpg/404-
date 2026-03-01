@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Red Tier 1 Engine - SHOPER_DEV</title>
-    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;400;700&display=swap" rel="stylesheet">
+    <!-- Подключаем Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --white: #FFFFFF;
             --red: #FF3F3F;
             --dark-red: #AA2727;
-            --font: 'Yanone Kaffeesatz', sans-serif;
+            --font: 'Montserrat', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,7 +37,7 @@
             height: 300vw; width: 300vw;
             transform: translateX(-50%) translateY(-50%) scale(0);
             border-radius: 50%;
-            animation: circle-animation 8s linear infinite;
+            animation: circle-animation 7s linear infinite;
             will-change: transform;
         }
         .circle.-white { border: 35vw solid var(--white); }
@@ -48,49 +49,48 @@
 
         @keyframes circle-animation {
             0%   { transform: translateX(-50%) translateY(-50%) scale(0); }
-            15%  { transform: translateX(-50%) translateY(-50%) scale(1); }
+            12%  { transform: translateX(-50%) translateY(-50%) scale(1); }
             100% { transform: translateX(-50%) translateY(-50%) scale(1); }
         }
 
-        /* --- ЦИФРЫ (ГИГАНТСКИЕ) --- */
+        /* --- ЦИФРЫ (ГИГАНТСКИЕ ПО ЗАПРОСУ ШЕФА) --- */
         .number {
             position: absolute;
-            font-size: 35vh; /* Огромный размер от высоты */
+            font-size: clamp(200px, 55vh, 600px); /* РЕАЛЬНО ОГРОМНЫЕ */
             color: var(--white);
             transform: scale(0);
             opacity: 0;
-            font-weight: 200;
-            line-height: 0.8;
-            animation: number-animation 8s linear infinite;
+            font-weight: 900;
+            line-height: 0.7;
+            animation: number-animation 7s linear infinite;
             will-change: transform, opacity;
             z-index: 5;
+            pointer-events: none; /* Чтобы не мешали кликать на кнопки */
         }
-        .number.-with-shadow { text-shadow: 2vh 2vh var(--dark-red); }
+        .number.-with-shadow { text-shadow: 3vh 3vh var(--dark-red); }
 
         @keyframes number-animation {
             0%   { transform: scale(0); opacity: 0; }
-            5%   { transform: scale(0); opacity: 0; }
-            8%   { transform: scale(1.1); opacity: 1; }
-            12%  { transform: scale(1); opacity: 1; }
-            25%  { transform: scale(1); opacity: 0; }
+            3%   { transform: scale(0); opacity: 0; }
+            7%   { transform: scale(1.15); opacity: 1; }
+            11%  { transform: scale(1); opacity: 1; }
+            22%  { transform: scale(1); opacity: 0; }
             100% { transform: scale(1); opacity: 0; }
         }
 
-        /* ХАОТИЧНАЯ РАССТАНОВКА И ЗАДЕРЖКИ (Как просил Шеф) */
-        .number:nth-child(1)  { top: 5%;  left: 5%;  animation-delay: 0.5s; }
-        .number:nth-child(2)  { top: 10%; left: 65%; animation-delay: 1.2s; font-size: 50vh; }
-        .number:nth-child(3)  { top: 40%; left: 10%; animation-delay: 2.5s; font-size: 40vh; }
-        .number:nth-child(4)  { top: 65%; left: 25%; animation-delay: 0.2s; }
-        .number:nth-child(5)  { top: 20%; left: 80%; animation-delay: 3.8s; font-size: 25vh; }
-        .number:nth-child(6)  { top: 70%; left: 55%; animation-delay: 1.8s; }
-        .number:nth-child(7)  { top: 45%; left: 75%; animation-delay: 5.0s; }
-        .number:nth-child(8)  { top: 5%;  left: 40%; animation-delay: 3.2s; }
+        /* ХАОТИЧНАЯ РАССТАНОВКА И СУПЕР ТАЙМИНГИ */
+        .number:nth-child(1)  { top: -5%; left: -5%; animation-delay: 0.3s; font-size: 45vh; }
+        .number:nth-child(2)  { top: 5%;  left: 60%; animation-delay: 1.0s; font-size: 60vh; }
+        .number:nth-child(3)  { top: 45%; left: -10%; animation-delay: 2.2s; font-size: 50vh; }
+        .number:nth-child(4)  { top: 60%; left: 20%; animation-delay: 0.1s; }
+        .number:nth-child(5)  { top: 15%; left: 75%; animation-delay: 3.5s; font-size: 30vh; }
+        .number:nth-child(6)  { top: 75%; left: 50%; animation-delay: 1.5s; }
         
         /* НУЛИ С ТЕНЬЮ */
-        .number:nth-child(9)  { top: 35%; left: 30%; animation-delay: 0.8s; font-size: 55vh; }
-        .number:nth-child(10) { top: 60%; left: 70%; animation-delay: 2.2s; font-size: 45vh; }
+        .number:nth-child(9)  { top: 30%; left: 25%; animation-delay: 0.7s; font-size: 65vh; }
+        .number:nth-child(10) { top: 55%; left: 65%; animation-delay: 2.0s; font-size: 55vh; }
 
-        /* --- UI ИНТЕРФЕЙС --- */
+        /* --- UI ИНТЕРФЕЙС (MONTSERRAT) --- */
         .ui-hub {
             position: absolute;
             top: 50%; left: 50%;
@@ -101,33 +101,48 @@
             color: #fff;
         }
 
-        .oops-msg { font-size: 2.5rem; font-weight: 700; margin-bottom: 30px; text-transform: uppercase; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .oops-msg { 
+            font-size: 2.2rem; font-weight: 900; margin-bottom: 30px; 
+            text-transform: uppercase; letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4); 
+        }
 
         .search-box {
             display: flex; background: #fff; border-radius: 50px; padding: 4px; margin-bottom: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .search-box input {
             flex-grow: 1; border: none; padding: 15px 25px; border-radius: 50px; 
-            outline: none; font-size: 18px; font-family: var(--font); color: #333;
+            outline: none; font-size: 16px; font-family: var(--font); color: #222; font-weight: 700;
         }
         .search-box button {
             background: var(--dark-red); color: #fff; border: none; 
-            padding: 0 35px; border-radius: 40px; font-weight: 700; cursor: pointer; text-transform: uppercase;
+            padding: 0 35px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase;
         }
 
-        .nav-links { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .nav-links { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
         .nav-links a {
-            background: rgba(0,0,0,0.5); color: #fff; text-decoration: none;
-            padding: 10px 22px; border-radius: 4px; font-size: 14px; font-weight: 700; transition: 0.2s;
+            background: #000; color: #fff; text-decoration: none;
+            padding: 10px 20px; border-radius: 4px; font-size: 11px; font-weight: 900; 
+            transition: all 0.3s; letter-spacing: 1px;
         }
-        .nav-links a:hover { background: #fff; color: var(--red); }
+        .nav-links a:hover { background: #fff; color: #000; transform: translateY(-2px); }
+        .nav-links a.promo-btn { background: var(--accent); color: #000; }
 
-        .contacts { font-size: 16px; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
-        .contacts a { color: var(--white); text-decoration: underline; position: static; font-size: 16px; }
+        .contacts { 
+            font-size: 15px; font-weight: 900; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+            letter-spacing: 1px;
+        }
+        .contacts a { 
+            color: var(--white); 
+            text-decoration: none !important; /* УБРАЛ ПОДЧЕРКИВАНИЕ */
+            margin: 0 10px;
+        }
+        .contacts a:hover { color: var(--accent); }
 
-        @media (max-height: 500px) {
-            .number { font-size: 25vh; }
+        @media (max-height: 600px) {
+            .number { font-size: 40vh; }
             .oops-msg { font-size: 1.5rem; }
         }
     </style>
@@ -143,9 +158,8 @@
             <div class="circle -red"></div>
         </div>
 
-        <!-- ЛЕТАЮЩИЕ ЦИФРЫ -->
+        <!-- ГИГАНТСКИЕ ЦИФРЫ -->
         <div class="numbers-layer">
-            <div class="number">4</div><div class="number">4</div>
             <div class="number">4</div><div class="number">4</div>
             <div class="number">4</div><div class="number">4</div>
             <div class="number">4</div><div class="number">4</div>
@@ -153,7 +167,7 @@
             <div class="number -with-shadow">0</div>
         </div>
 
-        <!-- ЦЕНТРАЛЬНЫЙ БЛОК -->
+        <!-- UI HUB -->
         <div class="ui-hub">
             <div class="oops-msg">Ups! Zgubiłeś się?</div>
             
@@ -165,11 +179,12 @@
             <div class="nav-links">
                 <a href="/" id="link-home" target="_top">HOME</a>
                 <a href="/pl/new" id="link-new" target="_top">NOWOŚCI</a>
+                <a href="/pl/promotions" id="link-promo" class="promo-btn" target="_top">PROMOCJE</a>
                 <a href="/kontakt" id="link-contact" target="_top">KONTAKT</a>
             </div>
 
             <div class="contacts">
-                Tel: <a href="#" id="shop-phone">...</a> | Email: <a href="#" id="shop-email">...</a>
+                Tel: <a href="#" id="shop-phone">...</a>  |  Email: <a href="#" id="shop-email">...</a>
             </div>
         </div>
     </div>
@@ -193,6 +208,7 @@
 
             document.getElementById('link-home').href = base + "/";
             document.getElementById('link-new').href = base + "/pl/new";
+            document.getElementById('link-promo').href = base + "/pl/promotions";
             document.getElementById('link-contact').href = base + "/pl/contact";
             document.getElementById('search-form').action = base + "/pl/search";
         })();
