@@ -2,37 +2,89 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>404 Eye - Shoper Dev</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Premium 404 Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        :root { --accent: #ffdb00; --text: #ffffff; --bg: #000000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0; padding: 0; background: #000;
+            background: var(--bg); color: var(--text);
+            font-family: 'Montserrat', sans-serif;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            height: 100vh; overflow: hidden; font-family: 'Montserrat', sans-serif;
-            cursor: crosshair;
+            min-height: 100vh; overflow-x: hidden; text-align: center; padding: 20px;
         }
-        .eyes-row { display: flex; gap: 30px; justify-content: center; }
-        .eye {
-            width: 100px; height: 100px; background: #fff;
-            border-radius: 50%; position: relative; overflow: hidden;
+
+        /* ИНТЕРАКТИВНЫЕ ГЛАЗА */
+        .eyes-row { display: flex; gap: 25px; margin-bottom: 20px; }
+        .eye { width: 80px; height: 80px; background: #fff; border-radius: 50%; position: relative; overflow: hidden; }
+        .pupil { width: 30px; height: 30px; background: #000; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: 0.1s ease-out; }
+
+        /* ТЕКСТОВЫЙ БЛОК */
+        h1 { font-size: clamp(40px, 8vw, 100px); font-weight: 900; letter-spacing: -2px; margin-bottom: 10px; }
+        p { font-size: 18px; opacity: 0.8; margin-bottom: 40px; max-width: 600px; }
+
+        /* УНИВЕРСАЛЬНЫЙ ПОИСК */
+        .search-box { width: 100%; max-width: 500px; position: relative; margin-bottom: 50px; }
+        .search-box input {
+            width: 100%; padding: 18px 25px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05); color: #fff; font-size: 16px; font-family: inherit; outline: none;
+            transition: 0.3s;
         }
-        .pupil {
-            width: 35px; height: 35px; background: #000;
-            border-radius: 50%; position: absolute;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            transition: 0.1s ease-out;
+        .search-box input:focus { border-color: var(--accent); background: rgba(255,255,255,0.1); }
+        .search-btn {
+            position: absolute; right: 8px; top: 8px; background: var(--accent); border: none;
+            padding: 10px 25px; border-radius: 40px; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 12px;
         }
-        h1 { font-size: 120px; color: #fff; margin: 20px 0 0; line-height: 1; letter-spacing: -5px; }
-        p { color: #ffdb00; font-size: 20px; text-transform: uppercase; margin: 10px 0; }
+
+        /* КНОПКИ НАВИГАЦИИ */
+        .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 50px; }
+        .nav-links a {
+            text-decoration: none; color: var(--text); font-weight: 700; text-transform: uppercase;
+            font-size: 13px; letter-spacing: 1px; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px; transition: 0.3s;
+        }
+        .nav-links a:hover { background: var(--text); color: var(--bg); }
+
+        /* КОНТАКТЫ */
+        .contacts { display: flex; gap: 30px; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
+        .contacts a { color: var(--accent); text-decoration: none; font-weight: 700; }
+        
+        /* КНОПКА "НАЗАД" */
+        .back-home { color: #555; text-decoration: underline; font-size: 12px; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
+
     <div class="eyes-row">
         <div class="eye"><div class="pupil"></div></div>
         <div class="eye"><div class="pupil"></div></div>
     </div>
-    <h1>404</h1>
-    <p>WE ARE WATCHING YOU</p>
+
+    <h1>UPS!</h1>
+    <p>Strona, której szukasz, nie istnieje. Ale bez obaw — my Cię widzimy. Znajdź to, czego potrzebujesz:</p>
+
+    <!-- ПОИСК (Универсальный) -->
+    <form class="search-box" action="/pl/search" method="get" target="_top">
+        <input type="text" name="search" placeholder="Wpisz nazwę produktu...">
+        <button type="submit" class="search-btn">Szukaj</button>
+    </form>
+
+    <!-- НАВИГАЦИЯ (Подходит для любого магазина) -->
+    <div class="nav-links">
+        <a href="/" target="_top">Strona główna</a>
+        <a href="/pl/new" target="_top">Nowości</a>
+        <a href="/pl/promotions" target="_top">Promocje</a>
+        <a href="/pl/contact" target="_top">Kontakt</a>
+    </div>
+
+    <!-- КОНТАКТЫ -->
+    <div class="contacts">
+        <div>Zadzwoń: <a href="tel:+48500600700">+48 500 600 700</a></div>
+        <div>Napisz: <a href="mailto:biuro@sklep.pl">biuro@sklep.pl</a></div>
+    </div>
+
+    <div class="back-home" onclick="window.parent.location.href='/'">Wróć do sklepu</div>
 
     <script>
         const pupils = document.querySelectorAll('.pupil');
@@ -42,7 +94,7 @@
                 const eyeX = rect.left + rect.width / 2;
                 const eyeY = rect.top + rect.height / 2;
                 const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
-                const distance = 25; 
+                const distance = 20; 
                 const x = Math.cos(angle) * distance;
                 const y = Math.sin(angle) * distance;
                 pupil.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
