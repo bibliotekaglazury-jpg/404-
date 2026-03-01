@@ -1,0 +1,42 @@
+<!-- Ссылка на ваш файл стилей с Гита -->
+<link rel="stylesheet" href="ССЫЛКА_ИЗ_GITHACK_КОТОРУЮ_ВЫ_ПОЛУЧИЛИ">
+
+<div class="shoper-404-body">
+    
+    <!-- Категории (Навигация) -->
+    <nav class="error-nav">
+        <a href="{shop_url}">Главная</a>
+        <a href="{shop_url}/pl/promotions">Промоции</a>
+        <a href="{shop_url}/pl/n/list">Новости</a>
+        <a href="{shop_url}/pl/contact">Контакты</a>
+    </nav>
+
+    <!-- Анимированный блок 404 -->
+    <section class="error-container">
+      <span><span>4</span></span>
+      <span>0</span>
+      <span><span>4</span></span>
+    </section>
+
+    <!-- Блок с текстом и поиском с отступом -->
+    <div class="content-gap">
+        <h1>Страница не найдена</h1>
+        <p>К сожалению, запрашиваемый адрес недоступен.</p>
+
+        <!-- Поиск Shoper -->
+        <div class="search-box-404">
+            <form action="{shop_url}/pl/s" method="get">
+                <input type="text" name="s" placeholder="Поиск товара..." required>
+                <button type="submit">Найти</button>
+            </form>
+        </div>
+
+        <!-- Контакты через теги Шопера -->
+        <div class="contact-footer">
+            <p><strong>{shop_name}</strong></p>
+            <p>Email: {shop_email} | Тел: {shop_phone}</p>
+            <p>{shop_company_name}</p>
+        </div>
+    </div>
+
+</div>
