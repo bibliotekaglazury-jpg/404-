@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <style>
         @import url("https://fonts.googleapis.com/css?family=Libre+Franklin");
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: "Libre Franklin", sans-serif; background-image: linear-gradient(0deg, #d4eff7, #ADD8E6); }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: "Libre Franklin", sans-serif; background-image: linear-gradient(0deg, #e0f2f7, #add8e6); }
+        
         .sun { position: absolute; top: 4em; left: 4em; width: 100px; height: 100px; border-radius: 50%; background-image: radial-gradient(circle at 50%, #fff 50%, #f5de19); box-shadow: 0px 0px 40px #f5de19, inset 0px 0px 100px #f5de19; animation: sun 5s linear infinite; }
+        
         .clouds { position: absolute; right: 0; bottom: 35vh; left: 0; opacity: 0.5; }
-        .clouds div { position: relative; left: -30%; width: 220px; height: 80px; border-radius: 50%; background-color: #fff; filter: blur(3px); animation: clouds 60s linear infinite, cloud 8s linear infinite; margin-bottom: 20px; }
-        .birds { position: absolute; right: -10%; top: 30px; width: 10px; height: 10px; background-color: #0d0001; clip-path: polygon(70% 59%, 100% 54%, 64% 68%, 48% 83%, 81% 86%, 55% 90%, 0 92%, 19% 76%, 0 60%, 33% 71%); animation: birds 30s linear infinite, fly 1s linear infinite; }
-        .sea { position: absolute; right: 0; bottom: 0; left: 0; z-index: -1; height: 25vh; background-color: #ADD8E6; }
+        .clouds div { position: relative; left: -30%; width: 220px; height: 80px; border-radius: 50%; background-color: #fff; background-image: radial-gradient(ellipse at 50%, transparent, #fcfcfc, #f7f7f7); filter: blur(3px); animation: clouds 60s linear infinite, cloud 8s linear infinite; }
+        .clouds div::before, .clouds div::after { position: absolute; content: ""; width: inherit; height: inherit; border-radius: 50%; background-color: #f2f2f2; filter: blur(3px); animation: cloud 3s linear infinite; }
+        .clouds div::after { background-color: #e6e6e6; }
+        .clouds div:nth-child(2) { animation-delay: 5s; }
+        .clouds div:nth-child(3) { animation-duration: 40s; }
+
+        .birds { position: absolute; right: -10%; top: 30px; width: 10px; height: 10px; background-color: #3b0002; clip-path: polygon(70% 59%, 100% 54%, 64% 68%, 48% 83%, 81% 86%, 55% 90%, 0 92%, 19% 76%, 0 60%, 33% 71%); animation: birds 30s linear infinite, fly 1s linear infinite; }
+
+        .sea { position: absolute; right: 0; bottom: 0; left: 0; z-index: -1; height: 25vh; background-color: #add8e6; }
+        .wave { position: absolute; left: -25%; bottom: 0; width: 150%; height: 100%; background-color: #add8e6; animation: vawe 20s linear infinite; }
+        .w-1 { background: #96cedf; animation-delay: 2s; }
+        .w-2 { background: #7fc3d9; }
+
         .fish span { position: absolute; top: 10%; left: 110%; display: block; width: 50px; height: 16px; background-color: #3b88a1; border-radius: 52% 48% 51% 49% / 51% 56% 44% 49%; animation: fish 15s linear infinite; }
-        .fish span::after { content: ""; position: absolute; width: 10px; height: 10px; top: 50%; left: 30%; background-color: #2c6679; clip-path: polygon(100% 27%, 86% 74%, 31% 100%, 0 22%, 0 0, 35% 0); animation: side 0.5s linear infinite; }
-        .wave { position: absolute; left: -25%; bottom: 0; width: 150%; height: 100%; background-color: #ADD8E6; animation: vawe 20s linear infinite; }
-        .w-1 { background: #96cedf; animation-delay: 2s; } .w-2 { background: #7fc3d9; }
-        .bottom { position: absolute; right: -2em; bottom: 0; left: -2em; height: 1.35em; border-radius: 78% 22% 52% 48% / 100% 100% 0% 0%; background-color: #3a0003; opacity: 0.8; }
-        /* Анимации */
+        .fish span::before { content: ""; position: absolute; left: 95%; top: calc(50% - 8px); width: 16px; height: 16px; background-color: inherit; clip-path: polygon(100% 0%, 84% 49%, 100% 100%, 0 66%, 0% 50%, 0 35%); }
+        .fish span::after { content: ""; position: absolute; width: 10px; height: 10px; top: 50%; left: 30%; background-color: #2c6679; clip-path: polygon(100% 27%, 86% 74%, 31% 100%, 0 22%, 0 0, 35% 0); transform-origin: 0 0; animation: side 0.5s linear infinite; }
+        .fish span:nth-child(2) { animation-duration: 6s; animation-delay: 5s; }
+        .fish span:nth-child(3) { animation-duration: 9s; }
+
+        .bottom { position: absolute; right: -2em; bottom: 0; left: -2em; height: 1.35em; border-radius: 78% 22% 52% 48% / 100% 100% 0% 0%; background-color: #3b0002; background-image: linear-gradient(0deg, #220001, #6d0005); opacity: 0.8; }
+        
+        /* Анимации оригинальные */
         @keyframes sun { 50% { box-shadow: 0px 0px 60px 20px #f5de19, inset 0px 0px 100px #f5de19; } }
         @keyframes clouds { 0% { left: -30%; } 100% { left: 110%; } }
+        @keyframes cloud { 30% { border-radius: 22% 78% 51% 49% / 78% 66% 34% 22%; } 60% { border-radius: 61% 39% 51% 49% / 50% 66% 34% 50%; } }
         @keyframes birds { 100% { right: 110%; transform: scale(1.8) translateY(100px); } }
         @keyframes fly { 50% { clip-path: polygon(70% 69%, 97% 80%, 70% 76%, 48% 83%, 81% 86%, 55% 90%, 0 92%, 19% 76%, 0 71%, 33% 71%); } }
         @keyframes fish { 0% { left: 110%; } 100% { left: -10%; } }
         @keyframes vawe { 20%, 40% { border-radius: 23% 77% 52% 48% / 100% 100% 0% 0%; } 30%, 50%, 70% { border-radius: 37% 63% 100% 0% / 100% 100% 0% 0%; } 80%, 60% { border-radius: 78% 22% 52% 48% / 100% 100% 0% 0%; } }
+        @keyframes side { 50% { transform: rotate(-35deg); } }
     </style>
 </head>
 <body>
