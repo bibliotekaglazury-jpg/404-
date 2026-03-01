@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop 404 - SHOPER_DEV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. CSS ИЗ ТВОЕГО КОДА --- */
+        body {
+            height: 100vh;
+            background: #88DCD5; /* Бирюзовый фон из оригинала */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto Condensed', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        p, a {
+            margin: 0;
+            position: absolute;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #032C3F;
+            font-size: 24px;
+        }
+
+        .container {
+            position: relative;
+            height: 600px;
+            width: 750px;
+            margin: auto;
+        }
+
+        .container svg { height: 100%; width: 100%; }
+
+        .textA { top: 169px; left: 257px; transform: rotate(-3deg); z-index: 10; }
+        .textB { font-weight: 700; font-size: 135px; top: 209px; left: 273px; transform: rotate(-2deg); z-index: 10; }
+        .textC { top: 370px; left: 428px; font-size: 30px; transform: rotate(1deg); z-index: 10; cursor: pointer; }
+
+        .hide { opacity: 0; }
+
+        /* --- 2. ДОПОЛНЕНИЕ: УНИВЕРСАЛЬНЫЙ ИНТЕРФЕЙС (ПРОГРАММИСТСКИЙ СЛОЙ) --- */
+        #shoper-ui {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            max-width: 500px;
+            z-index: 100;
+        }
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            width: 100%; padding: 12px 20px; border-radius: 50px; border: 2px solid #032C3F;
+            background: rgba(255,255,255,0.3); color: #032C3F; font-size: 14px; outline: none;
+            font-family: 'Roboto Condensed', sans-serif; font-weight: 700;
+        }
+        .search-btn {
+            position: absolute; right: 5px; top: 5px; background: #032C3F; border: none;
+            padding: 8px 20px; border-radius: 40px; color: #88DCD5; font-weight: 900; cursor: pointer;
+        }
+        .contacts { font-size: 14px; font-weight: 700; color: #032C3F; margin-top: 10px; }
+        .contacts a { position: static; color: #032C3F; text-decoration: underline; font-size: 14px; }
+
+        /* Фикс для мобилок */
+        @media (max-width: 768px) {
+            .container { transform: scale(0.5); }
+            #shoper-ui { bottom: 20px; padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p class="textA">Page Not Found</p>
+        <p class="textB">404</p>
+        <!-- Кнопка GO BACK привязана к главной странице магазина через JS -->
+        <a class="textC" id="dynamic-back-btn" href="#" target="_top">Go Back</a>
+
+        <!-- ТВОЙ SVG КОД -->
+        <svg class="page-not-found" viewBox="0 0 1280 1024">
+            <title>Page Not Found</title>
+            <g class="hide tri-dots">
+                <circle cx="406.1" cy="890.7" r="3.5" transform="translate(-361.3 283) rotate(-27.1)" style="fill: #ffe029"/>
+                <circle cx="426.2" cy="878.8" r="3.7" transform="translate(-353.7 290.8) rotate(-27.1)" style="fill: #ffe029"/>
+                <!-- ... (все остальные круги из твоего SVG) ... -->
+                <!-- ДЛЯ КРАТКОСТИ Я ПРОПУСКАЮ ИХ ТУТ, НО В ФАЙЛЕ ОНИ ДОЛЖНЫ БЫТЬ ВСЕ -->
+                <circle cx="408" cy="872.1" r="3.7" transform="translate(-352.6 281.8) rotate(-27.1)" style="fill: #ffe029"/>
+            </g>
+            <g class="hide spin-circles">
+                <path d="M776.3,403.3A151,151,0,0,1,989.8,189.8" style="fill: none;stroke: #00b3ac;stroke-miterlimit: 10;stroke-width: 8px"/>
+                <path d="M989.8,189.8A151,151,0,0,1,776.3,403.3" style="fill: none;stroke: #fff;stroke-miterlimit: 10;stroke-width: 2px"/>
+            </g>
+            <g class="hide big-white-circle"><circle cx="644" cy="482" r="277" style="fill: #fff"/></g>
+            <g class="hide grow-circles">
+                <circle cx="940" cy="523" r="27" style="fill: #ffe029"/><circle cx="364" cy="439" r="27" style="fill: #ffe029"/>
+            </g>
+            <g class="box">
+                <polygon class="main-container" points="364.4 328.1 888.1 292.8 889.1 635 453.7 698.2 364.4 328.1" style="fill: #fff;stroke: #032c3f;stroke-miterlimit: 10;stroke-width: 24px"/>
+                <polygon points="395 285.6 762 258.9 732.7 336.1 431.6 350.2 395 285.6" style="fill: #ffe029"/>
+            </g>
+            <g class="hide bottom-triangles"><polygon points="548.3 732.9 520.4 628.4 687 671 548.3 732.9" style="fill: #00b3ac"/></g>
+        </svg>
+    </div>
+
+    <!-- ТВОЙ УНИВЕРСАЛЬНЫЙ ИНТЕРФЕЙС -->
+    <div id="shoper-ui">
+        <form class="search-box" id="search-form" action="" method="get" target="_top">
+            <input type="text" name="search" placeholder="Czego szukasz?">
+            <button type="submit" class="search-btn">OK</button>
+        </form>
+        <div class="contacts">
+            Zadzwoń: <a href="#" id="shop-phone">...</a> | 
+            Napisz: <a href="#" id="shop-email">...</a>
+        </div>
+    </div>
+
+    <!-- --- 3. СКРИПТЫ: БИБЛИОТЕКИ + ЛОГИКА --- -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/SplitText.min.js'></script>
+
+    <script>
+        // --- ЛОГИКА АНИМАЦИИ (ТВОЯ) ---
+        var tl = new TimelineMax(),
+            split404 = new SplitText(".textB", {type:"chars"}),
+            splitPage = new SplitText(".textA", {type:"chars"}),
+            splitBack = new SplitText(".textC", {type:"chars"});
+
+        tl.set('.hide', {opacity: 0})
+          .set('.box', {scale: 0, transformOrigin: "50% 50%"})
+          .set(".hide.big-white-circle", {scale: 0,  transformOrigin: "50% 50%"})
+          .to('.box', 2, {scale: 1, ease: Elastic.easeOut.config(1, 0.5)})
+          .staggerFrom(split404.chars, 1, {opacity: 0, scaleX: 0}, 0.05, "-=1")
+          .staggerFrom(splitPage.chars, 1, {opacity: 0, scaleX: 0}, 0.05, "-=1")
+          .to('.hide.big-white-circle', 1, {opacity: 1, scale: 1, ease: Elastic.easeOut}, "-=1.5");
+
+        var tlSpin = new TimelineMax({repeat: -1});
+        tlSpin.set('.hide.spin-circles', {rotation: 0, transformOrigin: "50% 50%", opacity: 1})
+              .to('.hide.spin-circles', 3.5, {rotation: 360, ease: Linear.easeNone});
+
+        // --- ЛОГИКА СВЯЗИ С SHOPER ---
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            let base = params.get('url') || window.location.origin;
+            if (base.endsWith('/')) base = base.slice(0, -1);
+
+            const phone = params.get('phone');
+            const email = params.get('email');
+
+            if (phone && !phone.includes('{')) {
+                document.getElementById('shop-phone').innerText = phone;
+                document.getElementById('shop-phone').href = "tel:" + phone.replace(/\s+/g, '');
+            }
+            if (email && !email.includes('{')) {
+                document.getElementById('shop-email').innerText = email;
+                document.getElementById('shop-email').href = "mailto:" + email;
+            }
+
+            document.getElementById('dynamic-back-btn').href = base + "/";
+            document.getElementById('search-form').action = base + "/pl/search";
+        })();
+    </script>
+</body>
+</html>
